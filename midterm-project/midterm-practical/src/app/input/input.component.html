@@ -1,22 +1,23 @@
-<form>
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required>
+<h1>Input Page</h1>
+<form (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" [(ngModel)]="name" name="name" required>
+  </label>
 
-  <label for="meal">Meal preference:</label>
-  <div>
-    <input type="radio" id="chicken" name="meal" value="chicken" required>
-    <label for="chicken">Chicken</label>
-  </div>
+  <br><br>
 
-  <div>
-    <input type="radio" id="fish" name="meal" value="fish">
-    <label for="fish">Fish</label>
-  </div>
+  <label>
+    Meal Preference:
+    <br>
+    <input type="radio" [(ngModel)]="mealPreference" name="mealPreference" value="Chicken" required> Chicken
+    <br>
+    <input type="radio" [(ngModel)]="mealPreference" name="mealPreference" value="Fish" required> Fish
+    <br>
+    <input type="radio" [(ngModel)]="mealPreference" name="mealPreference" value="Vegetarian" required> Vegetarian
+  </label>
 
-  <div>
-    <input type="radio" id="vegetarian" name="meal" value="vegetarian">
-    <label for="vegetarian">Vegetarian</label>
-  </div>
+  <br><br>
 
   <button type="submit">Submit</button>
 </form>

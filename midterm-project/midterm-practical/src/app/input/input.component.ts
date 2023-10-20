@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -6,11 +7,20 @@ import { DataService } from '../data.service';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css']
 })
-export class InputComponent {
-  constructor(private dataService: DataService) {}
+export class InputComponent implements OnInit {
+  name: string = '';
+  mealPreference: string = '';
 
-  onSubmit(name: string, meal: string) {
-    this.dataService.name = name;
-    this.dataService.meal = meal;
+  constructor(private router: Router, private dataService: DataService) { }
+
+  ngOnInit() {
+    this.name = '';
+    this.mealPreference = '';
+  }
+
+  onSubmit() {
+    this.dataService.setName(this.name);
+    this.dataService.setMealPreference(this.mealPreference);
+    this.router.navigate(['/output']);
   }
 }

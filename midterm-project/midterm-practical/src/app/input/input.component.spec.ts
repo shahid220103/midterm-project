@@ -1,21 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { InputComponent } from './input.component';
+@Component({
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.css']
+})
+export class InputComponent {
+  name: string = '';
+  meal: string = '';
 
-describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+  constructor(private router: Router) {}
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [InputComponent]
+  onSubmit() {
+    this.router.navigate(['/output'], {
+      queryParams: { name: this.name, meal: this.meal }
     });
-    fixture = TestBed.createComponent(InputComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
@@ -6,14 +6,14 @@ import { DataService } from '../data.service';
   templateUrl: './output.component.html',
   styleUrls: ['./output.component.css']
 })
-export class OutputComponent {
-  constructor(private dataService: DataService) {}
+export class OutputComponent implements OnInit {
+  name: string = '';
+  mealPreference: string= '';
 
-  get name() {
-    return this.dataService.name;
-  }
+  constructor(private dataService: DataService) { }
 
-  get meal() {
-    return this.dataService.meal;
+  ngOnInit() {
+    this.name = this.dataService.getName();
+    this.mealPreference = this.dataService.getMealPreference();
   }
 }
