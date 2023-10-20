@@ -1,5 +1,5 @@
 <h1>Input Page</h1>
-<form>
+<form (ngSubmit)="onSubmit()">
   <h2>Choose your weapon:</h2>
   <div>
     <input type="radio" id="rock" name="user-choice" value="rock" (click)="onSelect('rock')">

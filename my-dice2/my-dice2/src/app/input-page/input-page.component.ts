@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { GameDataService } from '../game-data.service';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-input-page',
   templateUrl: './input-page.component.html',
@@ -23,12 +22,30 @@ export class InputPageComponent {
   }
 
   private getComputerChoice(): string {
-    // Implement logic to get computer choice here.
-    return '';
+    const choices = ['rock', 'paper', 'scissors'];
+    const index = Math.floor(Math.random() * choices.length);
+    return choices[index];
   }
 
+
   private getWinner(userChoice$: Observable<string>, computerChoice: string): string {
-    // Implement logic to get winner here.
-    return '';
+    let winner = '';
+
+    userChoice$.subscribe(userChoice => {
+      if (userChoice === computerChoice) {
+        winner = 'tie';
+      } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        winner = 'user';
+      } else {
+        winner = 'computer';
+      }
+    });
+
+    return winner;
   }
+
 }
